@@ -2,65 +2,100 @@
 //  ContentView.swift
 //  ProfilePage
 //
-//  Created by Najd Alsabi on 07/09/2024.
+//  Created by Najd on 07/09/2024.
 //
 
 import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Binding var name: String
+    @Binding var email: String
+    @Binding var bio: String
+    @Binding var education: String
+    @Binding var skills: String
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        VStack{
+            Text("Profile Page")
+                .font(.largeTitle)
+                .bold()
+                .padding(.bottom, 3)
+            
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(alignment: .top) {
+                    Image(systemName: "person")
+                        .foregroundColor(.blue)
+                        .font(.title2)
+                    
+                    Text("Name:")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                    Text(name)
+                        .font(.body)
                 }
-                .onDelete(perform: deleteItems)
+                .padding(.vertical, 10)
+                
+                HStack(alignment: .top) {
+                    Image(systemName: "envelope")
+                        .foregroundColor(.blue)
+                        .font(.title2)
+                    
+                    Text("Email:")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                    Text(email)
+                        .font(.body)
+                }
+                .padding(.vertical, 10)
+                
+                HStack(alignment: .top) {
+                    Image(systemName: "info.circle")
+                        .foregroundColor(.blue)
+                        .font(.title2)
+                    
+                    Text("Bio:")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                    
+                    Text(bio)
+                        .font(.body)
+                }
+                .padding(.vertical, 10)
+                
+                HStack(alignment: .top) {
+                    Image(systemName: "graduationcap")
+                        .foregroundColor(.blue)
+                        .font(.title2)
+                    
+                    Text("Education:")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                    
+                    Text(education)
+                        .font(.body)
+                }
+                .padding(.vertical, 10)
+                
+                HStack(alignment: .top) {
+                    Image(systemName: "star")
+                        .foregroundColor(.blue)
+                        .font(.title2)
+                    
+                    Text("Skills:")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                    
+                    Text(skills)
+                        .font(.body)
+                    
+                }
+                .padding(.vertical, 5)
+                
+                Spacer()
             }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+            .padding()
+            .navigationTitle("Profile")
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
-    }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }

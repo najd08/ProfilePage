@@ -2,7 +2,7 @@
 //  ProfilePageApp.swift
 //  ProfilePage
 //
-//  Created by Najd Alsabi on 07/09/2024.
+//  Created by Najd on 07/09/2024.
 //
 
 import SwiftUI
@@ -25,7 +25,7 @@ struct ProfilePageApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SignUpPage()
         }
         .modelContainer(sharedModelContainer)
     }
