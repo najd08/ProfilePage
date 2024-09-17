@@ -7,84 +7,41 @@
 import SwiftUI
 
 struct SignUpPage: View {
-    @State var name: String = ""
-    @State var email: String = ""
-    @State var bio: String = ""
-    @State var education: String = ""
-    @State var skills: String = ""
-    @State var showingProfile: Bool = false
+    @State private var name: String = ""
+    @State private var email: String = ""
+    @State private var bio: String = ""
+    @State private var education: String = ""
+    @State private var skills: String = ""
+    
+    @State private var signUpCompleted: Bool = false
 
     var body: some View {
-        NavigationView {
+        if signUpCompleted {
+            MainContentView(name: $name, email: $email, bio: $bio, education: $education, skills: $skills)
+        } else {
             VStack {
-                Text("Sign Up Page")
+                Text("Sign Up")
                     .font(.largeTitle)
                     .bold()
-                    .padding(.bottom, 45)
+                    .padding(.bottom, 30)
+                    .foregroundColor(.primary)
 
-                VStack(alignment: .leading, spacing: 10) {
-                    // Name
-                    Text("Name:")
-                        .font(.headline)
-                    TextField("Enter Your Name...", text: $name)
+                formSection(title: "Name", text: $name)
+                formSection(title: "Email", text: $email, keyboardType: .emailAddress)
+                formSection(title: "Bio", text: $bio)
+                formSection(title: "Education", text: $education)
+                formSection(title: "Skills", text: $skills)
+                
+                Button(action: {
+                    signUpCompleted = true
+                }) {
+                    Text("Sign Up")
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color(UIColor.systemGray6))
+                        .background(Color.blue)
+                        .foregroundColor(.white)
                         .cornerRadius(8)
-                        .textFieldStyle(PlainTextFieldStyle())
-
-                    // Email
-                    Text("Email:")
-                        .font(.headline)
-                    TextField("Enter Your Email...", text: $email)
-                        .padding()
-                        .background(Color(UIColor.systemGray6))
-                        .cornerRadius(8)
-                        .textFieldStyle(PlainTextFieldStyle())
-                        .keyboardType(.emailAddress)
-
-                    // Bio
-                    Text("Bio:")
-                        .font(.headline)
-                    TextField("Enter Your Bio...", text: $bio)
-                        .padding()
-                        .background(Color(UIColor.systemGray6))
-                        .cornerRadius(8)
-                        .textFieldStyle(PlainTextFieldStyle())
-
-                    // Education
-                    Text("Education:")
-                        .font(.headline)
-                    TextField("Enter Your Education Level...", text: $education)
-                        .padding()
-                        .background(Color(UIColor.systemGray6))
-                        .cornerRadius(8)
-                        .textFieldStyle(PlainTextFieldStyle())
-
-                    // Skills
-                    Text("Skills:")
-                        .font(.headline)
-                    TextField("Enter Your Skills...", text: $skills)
-                        .padding()
-                        .background(Color(UIColor.systemGray6))
-                        .cornerRadius(8)
-                        .textFieldStyle(PlainTextFieldStyle())
-                }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 30)
-
-                // Sign Up Button
-                NavigationLink(destination: ContentView(name: $name, email: $email, bio: $bio, education: $education, skills: $skills), isActive: $showingProfile) {
-                    Button(action: {
-                        showingProfile = true
-                    }) {
-                        Text("Sign Up")
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 20)
@@ -92,5 +49,24 @@ struct SignUpPage: View {
             .padding()
         }
     }
+    
+    private func formSection(title: String, text: Binding<String>, keyboardType: UIKeyboardType = .default) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(.secondary)
+            TextField("Enter your \(title)...", text: text)
+                .padding()
+                .background(Color(UIColor.systemGray6))
+                .cornerRadius(8)
+                .keyboardType(keyboardType)
+        }
+        .padding(.horizontal, 16)
+        .padding(.bottom, 16)
+    }
+}
+
+#Preview {
+    SignUpPage()
 }
 

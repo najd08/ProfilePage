@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
     @Binding var name: String
@@ -16,86 +15,42 @@ struct ContentView: View {
     @Binding var skills: String
 
     var body: some View {
-        VStack{
-            Text("Profile Page")
-                .font(.largeTitle)
-                .bold()
-                .padding(.bottom, 3)
-            
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(alignment: .top) {
-                    Image(systemName: "person")
-                        .foregroundColor(.blue)
-                        .font(.title2)
-                    
-                    Text("Name:")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                    Text(name)
-                        .font(.body)
-                }
-                .padding(.vertical, 10)
-                
-                HStack(alignment: .top) {
-                    Image(systemName: "envelope")
-                        .foregroundColor(.blue)
-                        .font(.title2)
-                    
-                    Text("Email:")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                    Text(email)
-                        .font(.body)
-                }
-                .padding(.vertical, 10)
-                
-                HStack(alignment: .top) {
-                    Image(systemName: "info.circle")
-                        .foregroundColor(.blue)
-                        .font(.title2)
-                    
-                    Text("Bio:")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                    
-                    Text(bio)
-                        .font(.body)
-                }
-                .padding(.vertical, 10)
-                
-                HStack(alignment: .top) {
-                    Image(systemName: "graduationcap")
-                        .foregroundColor(.blue)
-                        .font(.title2)
-                    
-                    Text("Education:")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                    
-                    Text(education)
-                        .font(.body)
-                }
-                .padding(.vertical, 10)
-                
-                HStack(alignment: .top) {
-                    Image(systemName: "star")
-                        .foregroundColor(.blue)
-                        .font(.title2)
-                    
-                    Text("Skills:")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                    
-                    Text(skills)
-                        .font(.body)
-                    
-                }
-                .padding(.vertical, 5)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Text("Profile")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding(.bottom, 20)
+                    .foregroundColor(.primary)
+
+                profileDetail(icon: "person", title: "Name", value: name)
+                profileDetail(icon: "envelope", title: "Email", value: email)
+                profileDetail(icon: "info.circle", title: "Bio", value: bio)
+                profileDetail(icon: "graduationcap", title: "Education", value: education)
+                profileDetail(icon: "star", title: "Skills", value: skills)
                 
                 Spacer()
             }
             .padding()
-            .navigationTitle("Profile")
         }
+        .navigationTitle("Profile")
+    }
+    
+    private func profileDetail(icon: String, title: String, value: String) -> some View {
+        HStack(alignment: .top) {
+            Image(systemName: icon)
+                .foregroundColor(.blue)
+                .font(.title2)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.secondary)
+                Text(value)
+                    .font(.body)
+            }
+        }
+        .padding(.vertical, 8)
     }
 }
+
+

@@ -13,6 +13,7 @@
 		CE1393A32C8CB87A00DA4708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE1393A22C8CB87A00DA4708 /* Assets.xcassets */; };
 		CE1393A72C8CB87A00DA4708 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE1393A62C8CB87A00DA4708 /* Preview Assets.xcassets */; };
 		CE1393AE2C8CB8AB00DA4708 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1393AD2C8CB8AB00DA4708 /* SignUpPage.swift */; };
+		CED9472A2C99FCBF00579017 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED947292C99FCBF00579017 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CE1393A42C8CB87A00DA4708 /* ProfilePage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProfilePage.entitlements; sourceTree = "<group>"; };
 		CE1393A62C8CB87A00DA4708 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CE1393AD2C8CB8AB00DA4708 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
+		CED947292C99FCBF00579017 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				CE13939C2C8CB87900DA4708 /* ProfilePageApp.swift */,
 				CE13939E2C8CB87900DA4708 /* ContentView.swift */,
 				CE1393AD2C8CB8AB00DA4708 /* SignUpPage.swift */,
+				CED947292C99FCBF00579017 /* HomeView.swift */,
 				CE1393A02C8CB87900DA4708 /* Item.swift */,
 				CE1393A22C8CB87A00DA4708 /* Assets.xcassets */,
 				CE1393A42C8CB87A00DA4708 /* ProfilePage.entitlements */,
@@ -148,6 +151,7 @@
 				CE13939F2C8CB87900DA4708 /* ContentView.swift in Sources */,
 				CE1393A12C8CB87900DA4708 /* Item.swift in Sources */,
 				CE1393AE2C8CB8AB00DA4708 /* SignUpPage.swift in Sources */,
+				CED9472A2C99FCBF00579017 /* HomeView.swift in Sources */,
 				CE13939D2C8CB87900DA4708 /* ProfilePageApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

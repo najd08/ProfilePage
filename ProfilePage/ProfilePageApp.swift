@@ -8,25 +8,39 @@
 import SwiftUI
 import SwiftData
 
-@main
-struct ProfilePageApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+struct MainContentView: View {
+    @Binding var name: String
+    @Binding var email: String
+    @Binding var bio: String
+    @Binding var education: String
+    @Binding var skills: String
 
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+    @State private var selectedTab = 0
+
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            HomeView()
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("Home")
+                }
+                .tag(0)
+
+            ContentView(name: $name, email: $email, bio: $bio, education: $education, skills: $skills)
+                .tabItem {
+                    Image(systemName: "person.circle.fill")
+                    Text("Profile")
+                }
+                .tag(1)
         }
-    }()
+    }
+}
 
+@main
+struct MyApp: App {
     var body: some Scene {
         WindowGroup {
             SignUpPage()
         }
-        .modelContainer(sharedModelContainer)
     }
 }
