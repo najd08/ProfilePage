@@ -19,7 +19,7 @@ struct HomeView: View {
                         .padding(.top, 33)
                         .foregroundColor(.primary)
 
-                    Image("Image") // Ensure this matches the asset catalog name
+                    Image("Image") 
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(height: 200)
